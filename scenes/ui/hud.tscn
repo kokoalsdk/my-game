@@ -1,0 +1,202 @@
+[gd_scene load_steps=15 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="1_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/level_up_screen.tscn" id="2_levelup"]
+[ext_resource type="PackedScene" path="res://scenes/ui/chest_reward_screen.tscn" id="3_chest_ui"]
+[ext_resource type="PackedScene" path="res://scenes/ui/result_screen.tscn" id="4_result"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="5_pause"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exp_bg"]
+bg_color = Color(0.1, 0.12, 0.16, 0.85)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_exp_fill"]
+bg_color = Color(0.15, 0.75, 0.95, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_level"]
+font_size = 18
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_time"]
+font_size = 22
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_bg"]
+bg_color = Color(0.25, 0.08, 0.08, 0.85)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hp_fill"]
+bg_color = Color(0.2, 0.82, 0.3, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_hp"]
+font_size = 13
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_warning_bg"]
+bg_color = Color(0.65, 0.08, 0.08, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 0.35, 0.35, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_warning"]
+font_size = 18
+font_color = Color(1, 0.95, 0.4, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[node name="HUD" type="CanvasLayer"]
+layer = 10
+script = ExtResource("1_hud")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TopBar" type="Control" parent="Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 48.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="ExpProgressBar" type="ProgressBar" parent="Control/TopBar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 14.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_exp_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_exp_fill")
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="Control/TopBar"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 18.0
+offset_right = 120.0
+offset_bottom = 44.0
+text = "LV. 1"
+label_settings = SubResource("LabelSettings_level")
+
+[node name="TimeLabel" type="Label" parent="Control/TopBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_top = 16.0
+offset_right = 60.0
+offset_bottom = 47.0
+grow_horizontal = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_time")
+horizontal_alignment = 1
+
+[node name="RightStats" type="HBoxContainer" parent="Control/TopBar"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 18.0
+offset_right = -20.0
+offset_bottom = 44.0
+grow_horizontal = 0
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="KillLabel" type="Label" parent="Control/TopBar/RightStats"]
+layout_mode = 2
+text = "💀 0"
+label_settings = SubResource("LabelSettings_level")
+
+[node name="GoldLabel" type="Label" parent="Control/TopBar/RightStats"]
+layout_mode = 2
+text = "🪙 0"
+label_settings = SubResource("LabelSettings_level")
+
+[node name="WarningBanner" type="PanelContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -260.0
+offset_top = 58.0
+offset_right = 260.0
+offset_bottom = 98.0
+grow_horizontal = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_warning_bg")
+
+[node name="WarningLabel" type="Label" parent="Control/WarningBanner"]
+layout_mode = 2
+text = "⚠️ 경고: 대규모 몬스터 무리가 접근합니다! ⚠️"
+label_settings = SubResource("LabelSettings_warning")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthContainer" type="Control" parent="Control"]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 50.0
+offset_right = 220.0
+offset_bottom = 76.0
+mouse_filter = 2
+
+[node name="HealthProgressBar" type="ProgressBar" parent="Control/HealthContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_hp_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hp_fill")
+value = 100.0
+show_percentage = false
+
+[node name="HealthLabel" type="Label" parent="Control/HealthContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "100 / 100"
+label_settings = SubResource("LabelSettings_hp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ResultScreen" parent="Control" instance=ExtResource("4_result")]
+
+[node name="LevelUpScreen" parent="Control" instance=ExtResource("2_levelup")]
+
+[node name="ChestRewardScreen" parent="Control" instance=ExtResource("3_chest_ui")]
+
+[node name="PauseMenu" parent="Control" instance=ExtResource("5_pause")]

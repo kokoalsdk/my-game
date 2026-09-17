@@ -1,0 +1,111 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy_boss.gd" id="1_boss"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2_icon"]
+[ext_resource type="Script" path="res://scripts/components/health_component.gd" id="3_health"]
+[ext_resource type="Script" path="res://scripts/components/hurtbox_component.gd" id="4_hurtbox"]
+[ext_resource type="Script" path="res://scripts/components/hitbox_component.gd" id="5_hitbox"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_body"]
+radius = 28.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hurt"]
+radius = 32.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss_bg"]
+bg_color = Color(0.15, 0.05, 0.05, 0.85)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_boss_fill"]
+bg_color = Color(1, 0.2, 0.25, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="LabelSettings" id="LabelSettings_boss_name"]
+font_size = 12
+font_color = Color(1, 0.85, 0.3, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[node name="EnemyBoss" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_boss")
+move_speed = 65.0
+contact_damage = 18.0
+max_health = 600.0
+experience_value = 25
+boss_name = "거대 골렘 (BOSS)"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.25, 0.25, 1)
+scale = Vector2(0.55, 0.55)
+texture = ExtResource("2_icon")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_body")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("3_health")
+max_health = 600.0
+
+[node name="HurtboxComponent" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("4_hurtbox")
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent"]
+shape = SubResource("CircleShape2D_hurt")
+
+[node name="HitboxComponent" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+script = ExtResource("5_hitbox")
+damage = 18.0
+knockback_force = 120.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+shape = SubResource("CircleShape2D_body")
+
+[node name="BossUI" type="Node2D" parent="."]
+position = Vector2(0, -48)
+
+[node name="HealthBar" type="ProgressBar" parent="BossUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -4.0
+offset_right = 50.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_boss_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_boss_fill")
+value = 100.0
+show_percentage = false
+
+[node name="NameLabel" type="Label" parent="BossUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -22.0
+offset_right = 60.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "거대 골렘 (BOSS)"
+label_settings = SubResource("LabelSettings_boss_name")
+horizontal_alignment = 1

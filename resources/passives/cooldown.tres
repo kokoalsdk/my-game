@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+id = "cooldown"
+passive_name = "빈 책 (Empty Tome)"
+description = "모든 무기의 쿨다운을 8% 감소시킵니다."
+max_level = 5
+passive_type = 2
+bonus_value_per_level = 0.08
+level_descriptions = PackedStringArray("쿨다운 -8%", "쿨다운 -8%", "쿨다운 -8%", "쿨다운 -8%")

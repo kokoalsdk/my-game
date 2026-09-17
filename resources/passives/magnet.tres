@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+id = "magnet"
+passive_name = "자석 (Attractorb)"
+description = "아이템 습득(자석) 반경을 25% 증가시킵니다."
+max_level = 5
+passive_type = 3
+bonus_value_per_level = 0.25
+level_descriptions = PackedStringArray("자석 반경 +25%", "자석 반경 +25%", "자석 반경 +25%", "자석 반경 +25%")

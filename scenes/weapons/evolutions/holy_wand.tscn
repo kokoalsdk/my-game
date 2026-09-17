@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/evolutions/holy_wand.gd" id="1_holy"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/projectile.tscn" id="2_proj"]
+
+[node name="HolyWand" type="Node2D"]
+script = ExtResource("1_holy")
+weapon_name = "신성한 지팡이"
+base_damage = 28.0
+base_cooldown = 0.12
+base_speed = 650.0
+base_pierce = 3
+base_projectile_count = 1
+max_range = 900.0
+projectile_scene = ExtResource("2_proj")

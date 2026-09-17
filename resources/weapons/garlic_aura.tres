@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/garlic_aura.tscn" id="2_scene"]
+[ext_resource type="Resource" path="res://resources/weapons/evolutions/soul_eater.tres" id="3_evo"]
+[ext_resource type="Resource" path="res://resources/passives/magnet.tres" id="4_passive"]
+
+[resource]
+script = ExtResource("1_data")
+id = "garlic_aura"
+weapon_name = "마늘 오라"
+description = "플레이어 주변에 신성한 마늘 영역을 형성하여 주기적으로 주변 모든 적을 타격하고 밀어냅니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 8
+base_damage = 8.0
+base_cooldown = 0.6
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 1
+area_scale = 1.0
+knockback = 120.0
+level_descriptions = PackedStringArray("범위 +15%, 공격력 +15%", "범위 +15%, 쿨다운 -10%", "공격력 +20%, 넉백 강화", "범위 +15%", "공격력 +25%, 쿨다운 -10%", "범위 +15%, 공격력 +30%", "공격력 +35%, 넉백 강화")
+evolution_weapon = ExtResource("3_evo")
+required_passive = ExtResource("4_passive")

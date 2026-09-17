@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+id = "speed"
+passive_name = "날개 (Wings)"
+description = "캐릭터의 이동 속도를 10% 증가시킵니다."
+max_level = 5
+passive_type = 1
+bonus_value_per_level = 0.1
+level_descriptions = PackedStringArray("이동 속도 +10%", "이동 속도 +10%", "이동 속도 +10%", "이동 속도 +10%")

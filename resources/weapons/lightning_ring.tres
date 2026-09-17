@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/lightning_ring.tscn" id="2_scene"]
+[ext_resource type="Resource" path="res://resources/weapons/evolutions/thunder_loop.tres" id="3_evo"]
+[ext_resource type="Resource" path="res://resources/passives/might.tres" id="4_passive"]
+
+[resource]
+script = ExtResource("1_data")
+id = "lightning_ring"
+weapon_name = "번개 반지"
+description = "무작위 적들의 위치에 강력한 벼락을 내리쳐 범위 피해를 입힙니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 8
+base_damage = 35.0
+base_cooldown = 2.2
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 1
+area_scale = 1.0
+knockback = 180.0
+level_descriptions = PackedStringArray("벼락 +1줄기", "공격력 +25%, 폭발 범위 증가", "벼락 +1줄기", "쿨다운 -15%", "벼락 +1줄기", "공격력 +30%", "벼락 +2줄기")
+evolution_weapon = ExtResource("3_evo")
+required_passive = ExtResource("4_passive")

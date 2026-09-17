@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/orbit_orb.tscn" id="2_scene"]
+[ext_resource type="Resource" path="res://resources/weapons/evolutions/unholy_vespers.tres" id="3_evo"]
+[ext_resource type="Resource" path="res://resources/passives/speed.tres" id="4_passive"]
+
+[resource]
+script = ExtResource("1_data")
+id = "orbit_orb"
+weapon_name = "성스러운 오브"
+description = "플레이어 주위를 회전하며 접근하는 적들을 밀쳐내고 지속 피해를 줍니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 8
+base_damage = 10.0
+base_cooldown = 1.0
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 1
+area_scale = 1.0
+knockback = 150.0
+level_descriptions = PackedStringArray("회전 오브 +1", "공격력 +25%, 회전 반경 증가", "회전 오브 +1", "회전 속도 +30%", "회전 오브 +1", "공격력 +30%", "회전 오브 +1, 속도 +20%")
+evolution_weapon = ExtResource("3_evo")
+required_passive = ExtResource("4_passive")

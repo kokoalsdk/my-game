@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/evolutions/unholy_vespers.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_data")
+id = "unholy_vespers"
+weapon_name = "불경한 기도 (진화)"
+description = "성스러운 오브의 최종 진화 형태. 8개의 암흑 구체가 초고속으로 멈추지 않고 회전하여 절대적인 방어와 분쇄의 벽을 형성합니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 1
+base_damage = 25.0
+base_cooldown = 1.0
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 8
+area_scale = 1.0
+knockback = 220.0
+level_descriptions = PackedStringArray()

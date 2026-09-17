@@ -1,0 +1,154 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/main_menu.gd" id="1_menu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/shop_ui.tscn" id="2_shop"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bg"]
+bg_color = Color(0.06, 0.07, 0.1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gold"]
+font_size = 22
+font_color = Color(1, 0.9, 0.4, 1)
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 54
+font_color = Color(1, 0.3, 0.3, 1)
+outline_size = 8
+outline_color = Color(0.15, 0.02, 0.02, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sub"]
+font_size = 18
+font_color = Color(0.75, 0.82, 0.95, 0.9)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stats"]
+bg_color = Color(0.1, 0.13, 0.18, 0.9)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.3, 0.4, 0.55, 0.6)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_stats"]
+font_size = 14
+font_color = Color(0.85, 0.9, 0.95, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bg")
+
+[node name="TopRightContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -300.0
+offset_bottom = 70.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 24
+
+[node name="GoldLabel" type="Label" parent="TopRightContainer"]
+layout_mode = 2
+text = "🪙 0 G"
+label_settings = SubResource("LabelSettings_gold")
+horizontal_alignment = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuVBox" type="VBoxContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 1
+
+[node name="TitleVBox" type="VBoxContainer" parent="CenterContainer/MenuVBox"]
+layout_mode = 2
+theme_override_constants/separation = 6
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/MenuVBox/TitleVBox"]
+layout_mode = 2
+text = "뱀서라이크"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="CenterContainer/MenuVBox/TitleVBox"]
+layout_mode = 2
+text = "SURVIVOR : 끝없는 밤에서 살아남으세요"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 1
+
+[node name="StatsPanel" type="PanelContainer" parent="CenterContainer/MenuVBox"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stats")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/MenuVBox/StatsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/MenuVBox/StatsPanel/MarginContainer"]
+layout_mode = 2
+text = "🏆 최고 생존 시간 : 00:00  |  최고 레벨 : LV. 1
+💀 누적 처치 수 : 0 마리  |  총 플레이 : 0 회"
+label_settings = SubResource("LabelSettings_stats")
+horizontal_alignment = 1
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="CenterContainer/MenuVBox"]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="StartButton" type="Button" parent="CenterContainer/MenuVBox/ButtonsVBox"]
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "⚔️  생존 시작 (START)"
+
+[node name="ShopButton" type="Button" parent="CenterContainer/MenuVBox/ButtonsVBox"]
+custom_minimum_size = Vector2(300, 52)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "✨  영구 강화 상점 (SHOP)"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/MenuVBox/ButtonsVBox"]
+custom_minimum_size = Vector2(300, 46)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "🚪  게임 종료 (QUIT)"
+
+[node name="ShopUI" parent="." instance=ExtResource("2_shop")]
+visible = false
+layout_mode = 1

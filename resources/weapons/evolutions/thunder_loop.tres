@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/evolutions/thunder_loop.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_data")
+id = "thunder_loop"
+weapon_name = "천둥의 고리 (진화)"
+description = "번개 반지의 최종 진화 형태. 4줄기의 벼락을 내리치며, 각 타격 지점에서 2차 연쇄 전기 충격파를 폭발시킵니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 1
+base_damage = 70.0
+base_cooldown = 1.4
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 4
+area_scale = 1.5
+knockback = 200.0
+level_descriptions = PackedStringArray()

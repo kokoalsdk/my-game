@@ -1,0 +1,186 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/pause_menu.gd" id="1_pause"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.08, 0.1, 0.14, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.65, 0.85, 0.8)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 0.5)
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 24
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_stats"]
+bg_color = Color(0.12, 0.16, 0.22, 0.8)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_stats"]
+font_size = 13
+font_color = Color(0.85, 0.92, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_section"]
+font_size = 14
+font_color = Color(0.4, 0.85, 1, 1)
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pause")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.65)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(420, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 28
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="TitleLabel" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "⏸️ 일시 정지 (PAUSED)"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="HSeparator1" type="HSeparator" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="StatsPanel" type="PanelContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_stats")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/StatsPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 10
+
+[node name="StatsLabel" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/StatsPanel/MarginContainer"]
+layout_mode = 2
+text = "⏱️ 생존 시간 : 00:00  |  ⭐ 레벨 : LV. 1\n💀 처치 수 : 0 마리  |  🪙 획득 골드 : 0 G"
+label_settings = SubResource("LabelSettings_stats")
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeVBox" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VolumeTitle" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox"]
+layout_mode = 2
+text = "🔊 사운드 설정"
+label_settings = SubResource("LabelSettings_section")
+
+[node name="BGMContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/BGMContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "배경음"
+
+[node name="BGMSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/BGMContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 0.8
+
+[node name="ValLabel" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/BGMContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "80%"
+horizontal_alignment = 2
+
+[node name="SFXContainer" type="HBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/SFXContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "효과음"
+
+[node name="SFXSlider" type="HSlider" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/SFXContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="ValLabel" type="Label" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/VolumeVBox/SFXContainer"]
+custom_minimum_size = Vector2(42, 0)
+layout_mode = 2
+text = "100%"
+horizontal_alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ButtonsVBox" type="VBoxContainer" parent="CenterContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 2
+text = "▶ 게임 계속하기 (ESC)"
+
+[node name="RetryButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "🔄 재시작"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/Panel/MarginContainer/VBoxContainer/ButtonsVBox"]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+text = "🏠 메인 로비로"

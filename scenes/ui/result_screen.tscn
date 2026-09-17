@@ -1,0 +1,254 @@
+[gd_scene load_steps=10 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/result_screen.gd" id="1_result"]
+[ext_resource type="PackedScene" path="res://scenes/ui/weapon_stat_row.tscn" id="2_row"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.07, 0.08, 0.12, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.65, 0.25, 0.25, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font_size = 36
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sub"]
+font_size = 14
+font_color = Color(0.75, 0.8, 0.9, 0.9)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sep"]
+color = Color(0.3, 0.35, 0.45, 0.6)
+thickness = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_box"]
+bg_color = Color(0.12, 0.15, 0.21, 0.85)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_box_title"]
+font_size = 11
+font_color = Color(0.65, 0.75, 0.85, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_box_val"]
+font_size = 16
+font_color = Color(1, 0.9, 0.45, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ResultScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_result")
+stat_row_scene = ExtResource("2_row")
+
+[node name="Dimmer" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.82)
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -305.0
+offset_right = 400.0
+offset_bottom = 305.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="HeaderVBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HeaderVBox"]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/HeaderVBox"]
+layout_mode = 2
+text = "어둠에 굴복하여 스러졌습니다..."
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 1
+
+[node name="HSeparatorTop" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sep")
+
+[node name="SummaryGrid" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TimeBox" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
+[node name="VBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/TimeBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/TimeBox/VBox"]
+layout_mode = 2
+text = "⏱️ 생존 시간"
+label_settings = SubResource("LabelSettings_box_title")
+horizontal_alignment = 1
+
+[node name="ValLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/TimeBox/VBox"]
+layout_mode = 2
+text = "00:00"
+label_settings = SubResource("LabelSettings_box_val")
+horizontal_alignment = 1
+
+[node name="KillBox" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
+[node name="VBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/KillBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/KillBox/VBox"]
+layout_mode = 2
+text = "💀 처치 수"
+label_settings = SubResource("LabelSettings_box_title")
+horizontal_alignment = 1
+
+[node name="ValLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/KillBox/VBox"]
+layout_mode = 2
+text = "0 마리"
+label_settings = SubResource("LabelSettings_box_val")
+horizontal_alignment = 1
+
+[node name="LevelBox" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
+[node name="VBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/LevelBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/LevelBox/VBox"]
+layout_mode = 2
+text = "🏆 도달 레벨"
+label_settings = SubResource("LabelSettings_box_title")
+horizontal_alignment = 1
+
+[node name="ValLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/LevelBox/VBox"]
+layout_mode = 2
+text = "LV. 1"
+label_settings = SubResource("LabelSettings_box_val")
+horizontal_alignment = 1
+
+[node name="GoldBox" type="PanelContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_box")
+
+[node name="VBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/GoldBox"]
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/GoldBox/VBox"]
+layout_mode = 2
+text = "🪙 획득 골드"
+label_settings = SubResource("LabelSettings_box_title")
+horizontal_alignment = 1
+
+[node name="ValLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer/SummaryGrid/GoldBox/VBox"]
+layout_mode = 2
+text = "+0 G"
+label_settings = SubResource("LabelSettings_box_val")
+horizontal_alignment = 1
+
+[node name="WeaponSection" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="SectionTitle" type="Label" parent="Panel/MarginContainer/VBoxContainer/WeaponSection"]
+layout_mode = 2
+text = "📊 무기별 피해량 통계 (DPS)"
+label_settings = SubResource("LabelSettings_box_title")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MarginContainer/VBoxContainer/WeaponSection"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="WeaponsVBox" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/WeaponSection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="HSeparatorBottom" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_sep")
+
+[node name="FooterHBox" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="RetryButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/FooterHBox"]
+custom_minimum_size = Vector2(180, 46)
+layout_mode = 2
+text = "🔄 다시 도전하기"
+
+[node name="Spacer" type="Control" parent="Panel/MarginContainer/VBoxContainer/FooterHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MainMenuButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/FooterHBox"]
+custom_minimum_size = Vector2(180, 46)
+layout_mode = 2
+text = "🏠 메인 화면으로"

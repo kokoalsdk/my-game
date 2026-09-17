@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/evolutions/unholy_vespers.gd" id="1_vespers"]
+
+[node name="UnholyVespers" type="Node2D"]
+script = ExtResource("1_vespers")
+weapon_name = "불경한 기도"
+base_damage = 25.0
+base_cooldown = 1.0
+base_projectile_count = 8
+orbit_radius = 95.0
+rotate_speed = 4.8
+knockback = 220.0

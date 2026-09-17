@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/evolutions/soul_eater.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_data")
+id = "soul_eater"
+weapon_name = "영혼 포식자 (진화)"
+description = "마늘 오라의 최종 진화 형태. 거대한 핏빛 암흑 장판으로 광범위한 적을 학살하며 피해를 입힐 때마다 플레이어의 체력을 지속 흡혈합니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 1
+base_damage = 22.0
+base_cooldown = 0.45
+base_speed = 0.0
+base_pierce = 999
+base_projectile_count = 1
+area_scale = 1.6
+knockback = 160.0
+level_descriptions = PackedStringArray()

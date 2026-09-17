@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PassiveData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/passive_data.gd" id="1_data"]
+
+[resource]
+script = ExtResource("1_data")
+id = "might"
+passive_name = "시금치 (Might)"
+description = "캐릭터의 공격력을 10% 증가시킵니다."
+max_level = 5
+passive_type = 0
+bonus_value_per_level = 0.1
+level_descriptions = PackedStringArray("공격력 +10%", "공격력 +10%", "공격력 +10%", "공격력 +10%")

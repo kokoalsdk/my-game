@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/orbit_orb.gd" id="1_orb"]
+
+[node name="OrbitOrb" type="Node2D"]
+script = ExtResource("1_orb")
+weapon_name = "성스러운 오브"
+base_damage = 10.0
+base_cooldown = 1.0
+base_projectile_count = 1
+orbit_radius = 80.0
+rotate_speed = 2.8
+knockback = 150.0

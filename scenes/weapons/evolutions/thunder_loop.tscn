@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/evolutions/thunder_loop.gd" id="1_loop"]
+
+[node name="ThunderLoop" type="Node2D"]
+script = ExtResource("1_loop")
+weapon_name = "천둥의 고리"
+base_damage = 70.0
+base_cooldown = 1.4
+base_projectile_count = 4
+knockback = 200.0

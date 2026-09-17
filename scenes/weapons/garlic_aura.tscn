@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/weapons/garlic_aura.gd" id="1_garlic"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aura"]
+radius = 65.0
+
+[node name="GarlicAura" type="Node2D"]
+script = ExtResource("1_garlic")
+weapon_name = "마늘 오라"
+base_damage = 8.0
+base_cooldown = 0.6
+aura_radius = 65.0
+knockback = 120.0
+
+[node name="HitboxArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxArea"]
+shape = SubResource("CircleShape2D_aura")

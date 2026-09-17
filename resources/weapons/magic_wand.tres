@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/weapon_data.gd" id="1_data"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/magic_wand.tscn" id="2_scene"]
+[ext_resource type="Resource" path="res://resources/weapons/evolutions/holy_wand.tres" id="3_evo"]
+[ext_resource type="Resource" path="res://resources/passives/cooldown.tres" id="4_passive"]
+
+[resource]
+script = ExtResource("1_data")
+id = "magic_wand"
+weapon_name = "매직 완드"
+description = "가장 가까운 적에게 마법 미사일을 자동으로 발사합니다."
+weapon_scene = ExtResource("2_scene")
+max_level = 8
+base_damage = 15.0
+base_cooldown = 1.0
+base_speed = 500.0
+base_pierce = 1
+base_projectile_count = 1
+area_scale = 1.0
+knockback = 120.0
+level_descriptions = PackedStringArray("투사체 +1", "공격력 +20%", "투사체 +1, 관통 +1", "쿨다운 -15%", "투사체 +1", "공격력 +25%", "투사체 +2")
+evolution_weapon = ExtResource("3_evo")
+required_passive = ExtResource("4_passive")

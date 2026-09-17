@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/resources/enemy_data.gd" id="1_data"]
+[ext_resource type="Texture2D" path="res://icon.svg" id="2_icon"]
+[ext_resource type="PackedScene" path="res://scenes/pickups/exp_gem.tscn" id="3_gem"]
+
+[resource]
+script = ExtResource("1_data")
+id = "enemy_basic"
+enemy_name = "박쥐 몬스터"
+sprite_texture = ExtResource("2_icon")
+modulate_color = Color(1, 0.6, 0.6, 1)
+scale_multiplier = 1.0
+max_health = 20.0
+move_speed = 90.0
+contact_damage = 8.0
+knockback_decay = 600.0
+knockback_resistance = 0.0
+experience_value = 1
+drop_gem_scene = ExtResource("3_gem")

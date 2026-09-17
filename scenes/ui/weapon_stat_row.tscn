@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/weapon_stat_row.gd" id="1_row"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_row"]
+bg_color = Color(0.1, 0.12, 0.16, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.25, 0.32, 0.42, 0.5)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="LabelSettings" id="LabelSettings_icon"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_name"]
+font_size = 15
+font_color = Color(1, 0.9, 0.45, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sub"]
+font_size = 11
+font_color = Color(0.7, 0.75, 0.85, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmg"]
+font_size = 15
+font_color = Color(1, 0.4, 0.4, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_bg"]
+bg_color = Color(0.15, 0.18, 0.22, 0.8)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bar_fill"]
+bg_color = Color(0.2, 0.75, 1, 0.95)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[node name="WeaponStatRow" type="PanelContainer"]
+custom_minimum_size = Vector2(620, 52)
+offset_right = 620.0
+offset_bottom = 52.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_row")
+script = ExtResource("1_row")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="IconLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(36, 36)
+layout_mode = 2
+size_flags_vertical = 4
+text = "🪄"
+label_settings = SubResource("LabelSettings_icon")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/NameVBox"]
+layout_mode = 2
+text = "매직 완드"
+label_settings = SubResource("LabelSettings_name")
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer/NameVBox"]
+layout_mode = 2
+text = "Lv. 8"
+label_settings = SubResource("LabelSettings_sub")
+
+[node name="DamageVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme_override_constants/separation = 2
+alignment = 1
+
+[node name="DamageLabel" type="Label" parent="MarginContainer/HBoxContainer/DamageVBox"]
+layout_mode = 2
+text = "48,250"
+label_settings = SubResource("LabelSettings_dmg")
+horizontal_alignment = 2
+
+[node name="DPSLabel" type="Label" parent="MarginContainer/HBoxContainer/DamageVBox"]
+layout_mode = 2
+text = "160.8 /s"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 2
+
+[node name="PercentVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/PercentVBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bar_bg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bar_fill")
+value = 52.0
+show_percentage = false
+
+[node name="PercentLabel" type="Label" parent="MarginContainer/HBoxContainer/PercentVBox"]
+layout_mode = 2
+text = "52.0%"
+label_settings = SubResource("LabelSettings_sub")
+horizontal_alignment = 2

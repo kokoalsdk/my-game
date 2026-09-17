@@ -1,0 +1,101 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/shop_item_slot.gd" id="1_slot"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.12, 0.14, 0.2, 0.95)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28, 0.35, 0.5, 0.7)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_icon"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_name"]
+font_size = 17
+font_color = Color(1, 0.9, 0.4, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_gauge"]
+font_size = 14
+font_color = Color(0.35, 0.8, 1, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_desc"]
+font_size = 13
+font_color = Color(0.85, 0.88, 0.92, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_bonus"]
+font_size = 12
+font_color = Color(0.4, 0.95, 0.5, 1)
+
+[node name="ShopItemSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(680, 80)
+offset_right = 680.0
+offset_bottom = 80.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+script = ExtResource("1_slot")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="IconLabel" type="Label" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+size_flags_vertical = 4
+text = "⚔️"
+label_settings = SubResource("LabelSettings_icon")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="HeaderHBox" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/HeaderHBox"]
+layout_mode = 2
+text = "공격력"
+label_settings = SubResource("LabelSettings_name")
+
+[node name="LevelGaugeLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox/HeaderHBox"]
+layout_mode = 2
+text = "[ ■ ■ □ □ □ ]  Lv 2 / 5"
+label_settings = SubResource("LabelSettings_gauge")
+
+[node name="DescLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+text = "기본 공격 피해량 +5% 증가"
+label_settings = SubResource("LabelSettings_desc")
+
+[node name="BonusLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
+layout_mode = 2
+text = "현재 효과: +10%"
+label_settings = SubResource("LabelSettings_bonus")
+
+[node name="BuyButton" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 44)
+layout_mode = 2
+size_flags_vertical = 4
+text = "🪙 100 G"
